@@ -1,0 +1,1 @@
+# golang-rest-with-rabbitmq
