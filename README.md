@@ -113,3 +113,16 @@ To access the documentation, after you run the app please visit [API DOCUMENTATI
 - `pkg`: Reusable packages and utilities that can be shared across projects.
 - `internal/test`: Contains test files, test utilities, and test configurations.
 
+## Libraries to Use
+
+- **pgx**: For database interaction with PostgreSQL. It provides a pure Go driver and tools for PostgreSQL, including support for prepared statements, transactions, and connection pooling.s
+- **viper**: For configuration management. It supports reading from various configuration file formats and integrates seamlessly with environment variables and flags to provide a flexible configuration solution.
+- **cobra**: For CLI integration. It is a library for creating powerful and modern command-line applications, supporting subcommands, flags, and automatic help generation.
+- **logrus**: For structured logging. It provides a simple API for logging with leveled logs, hooks, and formatting options, making it easier to manage log output.
+- **lumberjack**: For log file rotation. It handles rolling of log files based on size, date, and other criteria, helping to manage log file sizes and retention.
+- **echo**: For building the REST API. It is a high performance, minimalist Go web framework that focuses on simplicity and developer productivity, with built-in middleware support.
+- **amqp091**: For RabbitMQ communication. This library implements the AMQP 0.9.1 protocol, which is used for messaging between services and components in a microservices architecture.
+- **docker**: For containerization. It provides a convenient way to package and run our application with its dependencies in a containerized environment.
+- **golang-migrate**: For database migration management. It provides a simple way to manage database schema changes and data migrations
+- **air**: For hot reloading. It is a live reload tool for Go applications, allowing developers to quickly see the effects of code changes without having to manually restart the application.
+- **mockery**: For generating mock objects. It is a mock code autogenerator that supports a wide range of mocking libraries and test frameworks.
