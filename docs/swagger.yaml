@@ -1,0 +1,101 @@
+basePath: /v1
+definitions:
+  request.CreateTenantRequest:
+    properties:
+      name:
+        type: string
+    required:
+    - name
+    type: object
+  request.ProcessPayloadRequest:
+    properties:
+      payload:
+        type: object
+    required:
+    - payload
+    type: object
+info:
+  contact:
+    email: no-reply@b2b-tenant.com
+    name: Tenant Apps
+  description: API documentation for tenant apps backend
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Api Documentation for tenant apps backend
+  version: "0.1"
+paths:
+  /tenant:
+    post:
+      description: Create Tenant
+      operationId: create-tenant
+      parameters:
+      - description: create tenant payload
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/request.CreateTenantRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create Tenant
+      tags:
+      - tenant
+  /tenant/{clientID}:
+    delete:
+      description: Delete Tenant
+      operationId: delete-tenant
+      parameters:
+      - description: clientID
+        in: path
+        name: clientID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete Tenant
+      tags:
+      - tenant
+  /tenant/{clientID}/process:
+    post:
+      description: Process Tenant
+      operationId: process-tenant
+      parameters:
+      - description: clientID
+        in: path
+        name: clientID
+        required: true
+        type: string
+      - description: process tenant payload
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/request.ProcessPayloadRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Process Tenant
+      tags:
+      - tenant
+swagger: "2.0"

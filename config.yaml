@@ -1,0 +1,23 @@
+server:
+  port: "8080"
+
+database:
+  host: "localhost"
+  port: 5432
+  user: "postgres"
+  password: "123"
+  dbname: "tenantdb"
+  sslmode: "disable"
+
+rabbitmq:
+  url: "amqp://guest:guest@localhost:5672/"
+  autoReconnect: true
+  maxReconnects: 5
+  reconnectDelay: 5
+
+logging:
+  level: "info"
+  file: "app.log"
+  maxSize: 10
+  maxBackups: 5
+  maxAge: 30
