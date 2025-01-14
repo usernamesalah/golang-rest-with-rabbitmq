@@ -13,24 +13,40 @@
 
 ### Getting Started
 
+#### Running with docker
 1. Run `make dev args="up"` to run local environment with hot reload, everything inside `args` is basically the `docker compose` arguments. You can exit by `ctrl+c`.
 2. The db migration will automatically running.
 3. If you want to tear down all the containers you can run `make dev args="down"` or add `-v` to the args if you want to remove the volume too, for example `make dev args="down -v"`
 4. To rebuild the docker image if you change something, you can run `make dev args="build"`. This will left dangling images, you need to remove the dangling images manually.
 5. dont forget to change value `config.yaml` file in root folder and change the environment variables to your own.
 
+#### Running without docker
+1. Run only webservice `go run cmd/main.go`
+2. Tenant Service with cli
+    - Create tenant `go run cmd/main.go [tenant-name]`
+    - Process payload tenant `go run cmd/main.go [client-id] [tenant-payload]`
+    - Delete tenant `go run cmd/main.go [client-id]`
+
+#### RabbitMQ
+
+When you run `make dev args="up"`, RabbitMQ will be automatically started as part of the local environment setup. This ensures that RabbitMQ is running and ready for use without any additional manual steps.
+
+To verify that RabbitMQ is running, you can access the RabbitMQ management UI by visiting [http://localhost:15672](http://localhost:15672) with default credentials of `guest` and `guest`.
+
+You can access the RabbitMQ management UI by visiting [http://localhost:15672](http://localhost:15672) with default credentials of `guest` and `guest`
+
 
 ### Create Migration
 
 You need to install `golang-migrate` manually in your device.
 
-You can install it by `go install -tags 'mysql' github.com/golang-migrate/migrate/v4/cmd/migrate@latest`.
+You can install it by `go install github.com/golang-migrate/migrate/v4/cmd/migrate@latest`.
 
 Run `migrate create -ext sql -dir migration {migration_name}` to create your migration file
 
 ### Running DB Migration manually
 
-Please make sure the `date-apps-be` and `database` containers are running.
+Please make sure the `tenant-apps` and `database` containers are running.
 
 everything inside `args` are the `golang-migrate` arguments
 
@@ -43,8 +59,6 @@ Run `make dev-migrate args="down [migration_version]"` to delete some tables bas
 Run `make dev-migrate args="force [migration_version]"` to fix the dirty migration
 
 ## Testing Guide
-
-###
 
 ### Running Test
 
@@ -98,14 +112,4 @@ To access the documentation, after you run the app please visit [API DOCUMENTATI
 - `deployments`: Contains Docker files, deployment scripts and environment configurations.
 - `pkg`: Reusable packages and utilities that can be shared across projects.
 - `internal/test`: Contains test files, test utilities, and test configurations.
-
-## RabbitMQ
-
-### Automate RabbitMQ with `make dev args="up"`
-
-When you run `make dev args="up"`, RabbitMQ will be automatically started as part of the local environment setup. This ensures that RabbitMQ is running and ready for use without any additional manual steps.
-
-To verify that RabbitMQ is running, you can access the RabbitMQ management UI by visiting [http://localhost:15672](http://localhost:15672) with default credentials of `guest` and `guest`.
-
-You can access the RabbitMQ management UI by visiting [http://localhost:15672](http://localhost:15672) with default credentials of `guest` and `guest`
 
